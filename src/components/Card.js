@@ -1,10 +1,13 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components/macro';
 
 import { Title } from 'components/Title';
 import { ButtonAdd } from 'components/ButtonAdd';
 import { SingleItem } from 'components/SingleItem';
 import { List } from 'components/List/List';
+
+import { singleItems } from 'app/slices/listSlice';
 
 const CardWrapper = styled.div`
     width: 90%;
@@ -27,13 +30,13 @@ const Content = styled.ul`
 `;
 
 export const Card = () => {
+    const data = useSelector(singleItems);
     return (
         <CardWrapper>
             <Title text={'People'} />
             <Content>
                 <ButtonAdd />
-                <SingleItem />
-                <List />
+                { data.map( (data, ind) => <SingleItem key={ind} text={data.title} single={data.single} />)}
             </Content>
 
         </CardWrapper>

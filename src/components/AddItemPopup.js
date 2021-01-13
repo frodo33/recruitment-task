@@ -1,7 +1,8 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components/macro';
-import { popupIsOpen } from 'app/slices/popupSlice';
+import { setVisibility, popupIsOpen, popupTitle } from 'app/slices/popupSlice';
+import { addItem } from 'app/slices/listSlice';
 
 import { CloseButton } from 'components/CloseButton';
 
@@ -60,14 +61,37 @@ const PopupButton = styled.button`
 `;
 
 export const AddItemPopup = () => {
+    const dispatch = useDispatch();
 	const isOpen = useSelector(popupIsOpen);
+    const title = useSelector(popupTitle);
+
+    const [itemTitle, setItemTitle] = useState('');
+
+    const handleAddItem = (ev) => {
+        ev.preventDefault();
+        const item = {
+            title: itemTitle,
+            single: true,
+        }
+        dispatch(addItem(item));
+        dispatch(setVisibility(false));
+        setItemTitle('');
+    }
+
 	return (
 		<Popup isOpen={isOpen}>
             <PopupForm>
                 <CloseButton />
-                <PopupTitle>Add new element</PopupTitle>
-                <PopupInput></PopupInput>
-                <PopupButton>Add</PopupButton>
+                <PopupTitle>{title}</PopupTitle>
+                <PopupInput
+                    type='text'
+                    id='text'
+                    value={itemTitle}
+                    onChange={ e => setItemTitle(e.target.value) }
+                ></PopupInput>
+                <PopupButton
+                    onClick={ ev => handleAddItem(ev)}
+                >Add</PopupButton>
             </PopupForm>
         </Popup>
 	)

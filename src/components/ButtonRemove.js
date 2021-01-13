@@ -10,6 +10,7 @@ const BtnRemove = styled.button`
     border: none;
     outline: none;
     box-shadow: 0px 3px 15px 0px #00000030;
+    cursor: pointer;
     ${ ({ outside }) => outside && css`
     	position: absolute;
 	    top: 50%;
@@ -31,6 +32,8 @@ const BtnRemove = styled.button`
 
 export const ButtonRemove = ({ outside }) => {
 	return (
-		<BtnRemove outside={outside}></BtnRemove>
+		<BtnRemove
+            outside={outside}
+        ></BtnRemove>
 	)
 }

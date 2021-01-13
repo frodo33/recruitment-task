@@ -1,5 +1,7 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import styled, { css } from 'styled-components/macro';
+import { setVisibility, setPopupTitle } from 'app/slices/popupSlice';
 
 const BtnAdd = styled.button`
     position: absolute;
@@ -12,6 +14,7 @@ const BtnAdd = styled.button`
     border-radius: 50%;
     border: none;
     outline: none;
+    cursor: pointer;
     box-shadow: 
         0px 0px 0px 10px #ffffff,
         0px 13px 25px 0px #00000030;
@@ -46,7 +49,17 @@ const BtnAdd = styled.button`
 
 
 export const ButtonAdd = ({ small }) => {
+    const dispatch = useDispatch();
+    const handleOpenPopup = () => {
+        small 
+            ? dispatch(setPopupTitle('Add new list element')) 
+            : dispatch(setPopupTitle('Add new element'));
+        dispatch(setVisibility(true));
+    }
 	return (
-		<BtnAdd small={small}></BtnAdd>
+		<BtnAdd
+            small={small}
+            onClick={ () => handleOpenPopup() }
+        ></BtnAdd>
 	)
 }

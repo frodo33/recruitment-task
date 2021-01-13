@@ -37,11 +37,11 @@ const Item = styled.li`
     }
 `;
 
-export const SingleItem = () => {
+export const SingleItem = ({ text, single}) => {
 	return (
 		<Item>
             <Border></Border>
-            Age 40+
+            {text}
             <ButtonRemove />
         </Item>
 	)
