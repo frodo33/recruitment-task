@@ -1,13 +1,10 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-import { Border } from 'globalStyles';
-
-import { ButtonRemove } from 'components/ButtonRemove';
 import { Title } from 'components/Title';
 import { ButtonAdd } from 'components/ButtonAdd';
 import { SingleItem } from 'components/SingleItem';
-import { List } from 'components/List';
+import { List } from 'components/List/List';
 
 const CardWrapper = styled.div`
     width: 90%;
@@ -20,7 +17,7 @@ const CardWrapper = styled.div`
     align-items: center;
 `;
 
-const Content = styled.div`
+const Content = styled.ul`
     position: relative;
     width: calc(75% + 25%/2);
     align-self: flex-end;
@@ -33,15 +30,8 @@ export const Card = () => {
     return (
         <CardWrapper>
             <Title text={'People'} />
-
             <Content>
                 <ButtonAdd />
-                <SingleItem />
-                <List />
-                <SingleItem />
-                <List />
-                <SingleItem />
-                <List />
                 <SingleItem />
                 <List />
             </Content>

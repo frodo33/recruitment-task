@@ -1,9 +1,8 @@
-import React from 'react'
+import React from 'react';
 import styled from 'styled-components/macro';
-import { Border } from 'globalStyles';
 import { ButtonRemove } from 'components/ButtonRemove';
 
-const Item = styled.li`
+const ListElement = styled.li`
     position: relative;
     width: 50%;
     background: #fff;
@@ -35,14 +34,26 @@ const Item = styled.li`
         color: #b7bdca;
         font-size: 1.8rem;
     }
+    // end of extended styles
+
+    width: calc(100% - 4rem);
+    background: transparent;
+    box-shadow: none;
+    border: 1px solid #b7bdca;
+    margin: 1.5rem 0 1.5rem 4rem;
+    padding: 1.2rem;
+    &:before { width: 4rem; }
+    &:after {
+        content: 'Or';
+        font-size: 1.4rem;
+    }
 `;
 
-export const SingleItem = () => {
-	return (
-		<Item>
-            <Border></Border>
-            Age 40+
+export const ListItem = () => {
+    return (
+        <ListElement>
+            Hispanic
             <ButtonRemove />
-        </Item>
-	)
+        </ListElement>
+    )
 }
