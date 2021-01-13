@@ -19,8 +19,22 @@ export const GlobalStyle = createGlobalStyle`
     } 
 `;
 
-export const Container = styled.div`
-    max-width: 1440px;
-    margin: 0 auto;
-    padding: 0 10px;
+export const Border = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    overflow: hidden;
+    pointer-events: none;
+    &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 2%;
+        height: 100%;
+        background: #8276f6;
+    }
 `;
