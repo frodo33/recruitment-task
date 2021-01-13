@@ -10,7 +10,7 @@ import styled from 'styled-components/macro';
 const CardWrapper = styled.div`
     width: 90%;
     background: #fff;
-    /*box-shadow: 0px 0px 5px 5px #8276f6;*/
+    box-shadow: 0px 3px 15px 0px #00000030;
     margin: 20rem auto 0;
     padding: 10rem;
     display: flex;
@@ -35,7 +35,7 @@ const Content = styled.div`
     position: relative;
     width: calc(75% + 25%/2);
     align-self: flex-end;
-    background: #f4f4f4;
+    /*background: #f4f4f4;*/
     border-left: 1px solid #b7bdca;
     padding: 20px 0 50px 0px;
 `;
@@ -43,7 +43,6 @@ const Content = styled.div`
 const Single = styled.div`
     position: relative;
     width: 50%;
-    padding: 3rem;
     background: #fff;
     box-shadow: 0px 3px 15px 0px #00000030;
     margin: 3rem 0 3rem 10rem;
@@ -53,6 +52,7 @@ const Single = styled.div`
     padding: 2.5rem;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     &:before {
         content: '';
         position: absolute;
@@ -81,6 +81,7 @@ const Border = styled.div`
     height: 100%;
     border-radius: 5px;
     overflow: hidden;
+    pointer-events: none;
     &:before {
         content: '';
         position: absolute;
@@ -116,8 +117,8 @@ const ButtonRemove = styled.button`
 
 const ButtonAdd = styled.button`
     position: absolute;
-    width: 5rem;
-    height: 5rem;
+    width: ${ ({ sublist }) => sublist ? '3rem' : '5rem' };
+    height: ${ ({ sublist }) => sublist ? '3rem' : '5rem' };
     top: 100%;
     left: 0;
     transform: translate(-50%,-50%);
@@ -126,7 +127,7 @@ const ButtonAdd = styled.button`
     border: none;
     outline: none;
     box-shadow: 
-        0px 0px 0px 10px #ffffff,
+        ${ ({ sublist }) => sublist ? '0px 0px 0px 5px #ffffff' : '0px 0px 0px 10px #ffffff' },
         0px 13px 25px 0px #00000030;
     &:before, &:after {
         content: '';
@@ -134,8 +135,8 @@ const ButtonAdd = styled.button`
         top: 50%;
         left: 50%;
         transform: translate(-50%,-50%);
-        width: 2.2rem;
-        height: .6rem;
+        width: ${ ({ sublist }) => sublist ? '1.8rem' : '2.2rem' };
+        height: ${ ({ sublist }) => sublist ? '.5rem' : '.6rem'};
         background: #fff;
         border-radius: 2px;
     }
@@ -143,6 +144,79 @@ const ButtonAdd = styled.button`
         box-shadow: 0px 3px 15px 0px #00000030;
         transform: translate(-50%,-50%) rotate(-90deg);
     }
+`;
+
+
+const ListWrapper = styled(CardWrapper)`
+    position: relative;
+    width: 50%;
+    margin: 3rem 0 3rem 10rem;
+    border-radius: 5px;
+    font-size: 2rem;
+    font-weight: 600;
+    padding: 2.5rem 2.5rem 5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &:before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translate(-100%,-50%);
+        width: 10rem;
+        height: 0.1rem;
+        background: #b7bdca;
+    }
+    &:after {
+        content: 'And';
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translate(-450%,-50%);
+        color: #b7bdca;
+        font-size: 1.8rem;
+    }
+`;
+const ListTitle = styled(Title)`
+    position: relative;
+    width: 85%;
+    text-align: left;
+    font-size: 2rem;
+    font-weight: 600;
+    box-shadow: none;
+    text-shadow: none;
+    background: transparent;
+    border: 1px solid #b7bdca;
+    border-radius: 5px;
+    outline: none;
+    padding: 1.2rem;
+    color: #000;
+    display: flex;
+    align-items: center;
+`;
+const ListContent = styled(Content)`
+    padding: 1rem 0 1.5rem 0;
+`;
+const ListElement = styled(Single)`
+    width: calc(100% - 4rem);
+    background: transparent;
+    box-shadow: none;
+    border: 1px solid #b7bdca;
+    margin: 1.5rem 0 1.5rem 4rem;
+    padding: 1.2rem;
+    &:before { width: 4rem; }
+    &:after {
+        content: 'Or';
+        font-size: 1.4rem;
+    }
+`;
+
+const ButtonRemoveList = styled(ButtonRemove)`
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    transform: translate(50%,-50%);
 `;
 
 export const App = () => {
@@ -159,17 +233,24 @@ export const App = () => {
                         <ButtonRemove></ButtonRemove>
                     </Single>
 
-                    <Single>
+                    <ListWrapper>
                         <Border></Border>
-                        Age 40+
-                        <ButtonRemove></ButtonRemove>
-                    </Single>
-
-                    <Single>
-                        <Border></Border>
-                        Age 40+
-                        <ButtonRemove></ButtonRemove>
-                    </Single>
+                        <ListTitle>
+                            Ethnicity
+                            <ButtonRemoveList></ButtonRemoveList>
+                        </ListTitle>
+                        <ListContent>
+                            <ButtonAdd sublist></ButtonAdd>
+                            <ListElement>
+                                Black
+                                <ButtonRemove></ButtonRemove>
+                            </ListElement>
+                            <ListElement>
+                                Hispanic
+                                <ButtonRemove></ButtonRemove>
+                            </ListElement>
+                        </ListContent>
+                    </ListWrapper>
                 </Content>
             </CardWrapper>
         </>
