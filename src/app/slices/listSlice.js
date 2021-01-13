@@ -9,11 +9,14 @@ export const listSlice = createSlice({
     reducers: {
         addItem: (state, action) => {
             state.items = [...state.items, action.payload];
+        },
+        removeItem: (state, action) => {
+            state.items = [...state.items.slice(0, action.payload), ...state.items.slice(action.payload + 1)]
         }
     },
 });
 
-export const { addItem } = listSlice.actions;
+export const { addItem, removeItem } = listSlice.actions;
 
 export const singleItems = state => state.list.items;
 

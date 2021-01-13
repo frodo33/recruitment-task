@@ -1,5 +1,8 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import styled, { css } from 'styled-components/macro';
+
+import { removeItem } from 'app/slices/listSlice';
 
 const BtnRemove = styled.button`
     position: relative;
@@ -30,10 +33,12 @@ const BtnRemove = styled.button`
     }
 `;
 
-export const ButtonRemove = ({ outside }) => {
+export const ButtonRemove = ({ itemIndex, outside }) => {
+    const dispatch = useDispatch();
 	return (
 		<BtnRemove
             outside={outside}
+            onClick={ e => dispatch(removeItem(itemIndex)) }
         ></BtnRemove>
 	)
 }

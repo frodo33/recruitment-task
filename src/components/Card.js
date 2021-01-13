@@ -36,7 +36,7 @@ export const Card = () => {
             <Title text={'People'} />
             <Content>
                 <ButtonAdd />
-                { data.map( (data, ind) => <SingleItem key={ind} text={data.title} single={data.single} />)}
+                { data.map( (data, ind) => <SingleItem key={ind} index={ind} text={data.title} single={data.single} />)}
             </Content>
 
         </CardWrapper>

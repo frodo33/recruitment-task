@@ -37,12 +37,12 @@ const Item = styled.li`
     }
 `;
 
-export const SingleItem = ({ text, single}) => {
+export const SingleItem = ({ index, text, single }) => {
 	return (
 		<Item>
             <Border></Border>
             {text}
-            <ButtonRemove />
+            <ButtonRemove itemIndex={index} />
         </Item>
 	)
 }
