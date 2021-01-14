@@ -2,7 +2,8 @@ import React from 'react'
 import styled, { css } from 'styled-components/macro';
 
 export const ItemTitle = styled.h1`
-    width: 25%;
+    /*width: 25%;*/
+    min-width: 25%;
     align-self: flex-start;
     text-align: center;
     font-size: 2.2rem;
@@ -14,6 +15,11 @@ export const ItemTitle = styled.h1`
     border-radius: 5px;
     outline: none;
     padding: 2rem 5rem;
+    @media screen and (max-width: 767px) {
+    	width: 100%;
+    }
+
+
     ${ ({listTitle}) => listTitle && css`
     	position: relative;
 	    width: 85%;

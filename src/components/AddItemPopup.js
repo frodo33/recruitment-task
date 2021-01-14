@@ -31,6 +31,10 @@ const PopupForm = styled.form`
     box-shadow: 0px 3px 15px 0px #00000030;
     padding: 4rem 10rem;
     border-radius: 5px;
+    @media screen and (max-width: 767px) {
+        max-width: 600px;
+        padding: 2rem 0;
+    }
 `;
 
 const PopupTitle = styled.h1`
@@ -43,6 +47,10 @@ const PopupInput = styled.input`
     border-radius: 5px;
     font-size: 2.2rem;
     padding-left: 1.2rem;
+    @media screen and (max-width: 767px) {
+        width: 90%;
+        min-height: 50px;
+    }
 `;
 const PopupButton = styled.button`
     width: 25%;
@@ -59,6 +67,10 @@ const PopupButton = styled.button`
     border: none;
     border-radius: 5px;
     outline: none;
+    @media screen and (max-width: 767px) {
+        margin: 2rem 0 0 0;
+        padding: 1rem 10rem;
+    }
 `;
 
 export const AddItemPopup = () => {
@@ -93,7 +105,6 @@ export const AddItemPopup = () => {
                         index: curList,
                         sublist: []
                     }
-                    // console.log('tu trzeba update ')
                     dispatch(addCurrentListItem(item));
                 } else {
                     item = {

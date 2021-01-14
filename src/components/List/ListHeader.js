@@ -33,10 +33,15 @@ const ListTitle = styled.h1`
     align-items: center;
 `;
 
+const ItemTitle = styled.span`
+    width: 100%;
+    overflow: scroll;
+`;
+
 export const ListHeader = ({ listIndex, title }) => {
     return (
         <ListTitle>
-            {title}
+            <ItemTitle>{title}</ItemTitle>
             <ButtonRemove outside={true} itemIndex={listIndex}/>
         </ListTitle>
     )

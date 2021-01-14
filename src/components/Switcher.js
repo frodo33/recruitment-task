@@ -15,6 +15,10 @@ const PopupSwitcher = styled.div`
     display: ${ ({ visible }) => visible ? 'flex' : 'none' };
     align-items: center;
     justify-content: space-around;
+    @media screen and (max-width: 767px) {
+        width: 100%;
+        font-size: 1.4rem;
+    }
 `;
 const ToggleSwitch = styled.div`
     position: relative;
@@ -44,7 +48,7 @@ export const Switcher = ({ isChecked, isListPopup }) => {
 		<PopupSwitcher 
             visible={!isListPopup}
             onClick={ () => isChecked ? dispatch(setListChecked(false)) : dispatch(setListChecked(true)) } >
-            Want to add list?
+            Would you like to add a list?
             <ToggleSwitch active={isChecked}>
                 <Slider active={isChecked}></Slider>
             </ToggleSwitch>

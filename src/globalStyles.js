@@ -15,7 +15,8 @@ export const GlobalStyle = createGlobalStyle`
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         min-height: 100vh;
-        background: #2E343A;
+        /*background: #2E343A;*/
+        background: #fff;
     } 
 `;
 

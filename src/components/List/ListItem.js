@@ -42,17 +42,34 @@ const ListElement = styled.li`
     border: 1px solid #b7bdca;
     margin: 1.5rem 0 1.5rem 4rem;
     padding: 1.2rem;
-    &:before { width: 4rem; }
+    &:before {
+        width: 4rem;
+        @media screen and (max-width: 767px) {
+            width: 2rem;
+        }
+    }
     &:after {
         content: 'Or';
         font-size: 1.4rem;
+        @media screen and (max-width: 767px) {
+            transform: translate(-300%,-50%)
+        }
     }
+    @media screen and (max-width: 767px) {
+        width: 100%;
+        margin: 1.5rem 0 1.5rem 2rem;
+    }
+`;
+
+const ItemTitle = styled.span`
+    width: calc(100% - 5rem);
+    overflow: scroll;
 `;
 
 export const ListItem = ({ title, listIndex, listItemIndex }) => {
     return (
         <ListElement>
-            {title}
+            <ItemTitle>{title}</ItemTitle>
             <ButtonRemove itemIndex={listIndex} listItemIndex={listItemIndex} />
         </ListElement>
     )

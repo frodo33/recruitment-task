@@ -11,18 +11,25 @@ import { singleItems } from 'app/slices/listSlice';
 
 const ListWrapper = styled.li`
     position: relative;
-    width: 50%;
+    /*width: 50%;*/
+    min-width: 50%;
+    max-width: 900px;
     margin: 3rem 0 3rem 10rem;
     border-radius: 5px;
     font-size: 2rem;
     font-weight: 600;
-    padding: 2.5rem 2.5rem 5rem;
+    padding: 2.5rem 2.5rem 5rem 3rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     background: #fff;
     box-shadow: 0px 3px 15px 0px #00000030;
+    @media screen and (max-width: 767px) {
+        margin: 3rem 0 3rem 3rem;
+        width: 85%;
+    }
+
     &:before {
         content: '';
         position: absolute;
@@ -32,6 +39,9 @@ const ListWrapper = styled.li`
         width: 10rem;
         height: 0.1rem;
         background: #b7bdca;
+        @media screen and (max-width: 767px) {
+            width: 3rem;
+        }
     }
     &:after {
         content: 'And';
@@ -41,12 +51,16 @@ const ListWrapper = styled.li`
         transform: translate(-450%,-50%);
         color: #b7bdca;
         font-size: 1.8rem;
+        @media screen and (max-width: 767px) {
+            transform: translate(-220%,-50%);
+        }
     }
 `;
 
 const ListContent = styled.ul`
     position: relative;
     width: calc(75% + 25%/2);
+    min-height: 40px;
     align-self: flex-end;
     border-left: 1px solid #b7bdca;
     padding: 1rem 0 1.5rem 0;
