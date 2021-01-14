@@ -18,11 +18,20 @@ export const listSlice = createSlice({
             const { index, title } = action.payload;
             
             state.items = state.items.map( (item, i) => {
-                console.log(item, i);
                 if( i !== index ) return item;
                 return {
                     ...item,
                     sublist: [...item.sublist, title]
+                }
+            } )
+        },
+        removeCurrentListItem: (state, action) => {
+            const { itemInd, listItemInd } = action.payload;
+            state.items = state.items.map( (item, i) => {
+                if( i !== itemInd ) return item;
+                return {
+                    ...item,
+                    sublist: [...item.sublist.slice(0, listItemInd), ...item.sublist.slice(listItemInd + 1)]
                 }
             } )
         },
@@ -32,7 +41,7 @@ export const listSlice = createSlice({
     },
 });
 
-export const { addItem, removeItem, addCurrentListItem, setCurrentList } = listSlice.actions;
+export const { addItem, removeItem, addCurrentListItem, setCurrentList, removeCurrentListItem } = listSlice.actions;
 
 export const singleItems = state => state.list.items;
 export const currentList = state => state.list.currentList;

@@ -61,7 +61,7 @@ export const List = ({ index, text }) => {
             <ListHeader listIndex={index} title={text} />
             <ListContent>
                 <ButtonAdd small index={index} />
-                { !items.single && items[index].sublist.map( title => <ListItem title={title} />) }
+                { !items.single && items[index].sublist.map( (title, ind) => <ListItem key={ind} title={title} listIndex={index} listItemIndex={ind} />) }
             </ListContent>
         </ListWrapper>
     )

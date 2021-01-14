@@ -49,11 +49,11 @@ const ListElement = styled.li`
     }
 `;
 
-export const ListItem = ({ title }) => {
+export const ListItem = ({ title, listIndex, listItemIndex }) => {
     return (
         <ListElement>
             {title}
-            <ButtonRemove />
+            <ButtonRemove itemIndex={listIndex} listItemIndex={listItemIndex} />
         </ListElement>
     )
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import styled, { css } from 'styled-components/macro';
 
-import { removeItem } from 'app/slices/listSlice';
+import { removeItem, removeCurrentListItem } from 'app/slices/listSlice';
 
 const BtnRemove = styled.button`
     position: relative;
@@ -33,12 +33,23 @@ const BtnRemove = styled.button`
     }
 `;
 
-export const ButtonRemove = ({ itemIndex, outside }) => {
+export const ButtonRemove = ({ itemIndex, outside, listItemIndex }) => {
     const dispatch = useDispatch();
+    const handleRemove = () => {
+        if(listItemIndex !== undefined) {
+            const indexes = {
+                itemInd: itemIndex,
+                listItemInd: listItemIndex
+            }
+            dispatch(removeCurrentListItem(indexes));
+        } else {
+            dispatch(removeItem(itemIndex));
+        }
+    }
 	return (
 		<BtnRemove
             outside={outside}
-            onClick={ e => dispatch(removeItem(itemIndex)) }
+            onClick={ () => handleRemove() }
         ></BtnRemove>
 	)
 }
