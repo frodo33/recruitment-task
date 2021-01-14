@@ -49,10 +49,10 @@ const ListElement = styled.li`
     }
 `;
 
-export const ListItem = () => {
+export const ListItem = ({ title }) => {
     return (
         <ListElement>
-            Hispanic
+            {title}
             <ButtonRemove />
         </ListElement>
     )

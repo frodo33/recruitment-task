@@ -33,11 +33,11 @@ const ListTitle = styled.h1`
     align-items: center;
 `;
 
-export const ListHeader = () => {
+export const ListHeader = ({ listIndex, title }) => {
     return (
         <ListTitle>
-            Ethnicity
-            <ButtonRemove outside={true} />
+            {title}
+            <ButtonRemove outside={true} itemIndex={listIndex}/>
         </ListTitle>
     )
 }

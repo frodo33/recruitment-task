@@ -5,6 +5,8 @@ export const popupSlice = createSlice({
     initialState: {
         isOpen: false,
         title: '',
+        isListItemPopup: false,
+        listChecked: false,
     },
     reducers: {
         setVisibility: (state, action) => {
@@ -13,12 +15,20 @@ export const popupSlice = createSlice({
         setPopupTitle: (state, action) => {
             state.title = action.payload;
         },
+        setListChecked: (state, action) => {
+            state.listChecked = action.payload;
+        },
+        setListItemPopup: (state, action) => {
+            state.isListItemPopup = action.payload;
+        },
     },
 });
 
-export const { setVisibility, setPopupTitle } = popupSlice.actions;
+export const { setVisibility, setPopupTitle, setListChecked, setListItemPopup } = popupSlice.actions;
 
 export const popupIsOpen = state => state.popup.isOpen;
 export const popupTitle = state => state.popup.title;
+export const isListItemPopup = state => state.popup.isListItemPopup;
+export const listIsChecked = state => state.popup.listChecked;
 
 export default popupSlice.reducer;

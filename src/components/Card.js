@@ -36,7 +36,9 @@ export const Card = () => {
             <Title text={'People'} />
             <Content>
                 <ButtonAdd />
-                { data.map( (data, ind) => <SingleItem key={ind} index={ind} text={data.title} single={data.single} />)}
+                { data.map( (data, ind) => data.single 
+                    ? <SingleItem key={ind} index={ind} text={data.title} /> 
+                    : <List key={ind} index={ind} text={data.title} />)}
             </Content>
 
         </CardWrapper>

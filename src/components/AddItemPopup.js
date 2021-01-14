@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components/macro';
-import { setVisibility, popupIsOpen, popupTitle } from 'app/slices/popupSlice';
-import { addItem } from 'app/slices/listSlice';
+import { setVisibility, popupIsOpen, popupTitle, setListChecked, listIsChecked, isListItemPopup } from 'app/slices/popupSlice';
+import { addItem, addCurrentListItem, currentList } from 'app/slices/listSlice';
 
 import { CloseButton } from 'components/CloseButton';
+import { Switcher } from 'components/Switcher';
 
 const Popup = styled.div`
     position: fixed;
@@ -44,7 +45,7 @@ const PopupInput = styled.input`
     padding-left: 1.2rem;
 `;
 const PopupButton = styled.button`
-    width: 20%;
+    width: 25%;
     align-self: center;
     padding: 2rem 5rem;
     display: flex;
@@ -64,18 +65,50 @@ export const AddItemPopup = () => {
     const dispatch = useDispatch();
 	const isOpen = useSelector(popupIsOpen);
     const title = useSelector(popupTitle);
+    const isChecked = useSelector(listIsChecked);
+    const isListPopup = useSelector(isListItemPopup);
+    const curList = useSelector(currentList);
 
     const [itemTitle, setItemTitle] = useState('');
 
     const handleAddItem = (ev) => {
         ev.preventDefault();
-        const item = {
-            title: itemTitle,
-            single: true,
+        let item = {};
+        //check value if isn't empty
+        if(itemTitle) {
+            if(isChecked) {
+                // set list item
+                item = {
+                    title: itemTitle,
+                    single: false,
+                    sublist: []
+                }
+                dispatch(addItem(item));
+            } else {
+                // set single item
+                //popup which added element to each list
+                if(isListPopup) {
+                    item = {
+                        title: itemTitle,
+                        index: curList,
+                        sublist: []
+                    }
+                    // console.log('tu trzeba update ')
+                    dispatch(addCurrentListItem(item));
+                } else {
+                    item = {
+                        title: itemTitle,
+                        single: true,
+                        sublist: []
+                    }
+                    dispatch(addItem(item));
+                }
+            }
+
+            setItemTitle('');
+            dispatch(setVisibility(false));
+            dispatch(setListChecked(false));
         }
-        dispatch(addItem(item));
-        dispatch(setVisibility(false));
-        setItemTitle('');
     }
 
 	return (
@@ -83,6 +116,10 @@ export const AddItemPopup = () => {
             <PopupForm>
                 <CloseButton />
                 <PopupTitle>{title}</PopupTitle>
+                <Switcher
+                    isChecked={isChecked}
+                    isListPopup={isListPopup}
+                />
                 <PopupInput
                     type='text'
                     id='text'

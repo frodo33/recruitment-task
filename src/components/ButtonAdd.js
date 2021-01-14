@@ -1,7 +1,8 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import styled, { css } from 'styled-components/macro';
-import { setVisibility, setPopupTitle } from 'app/slices/popupSlice';
+import { setVisibility, setPopupTitle, setListItemPopup } from 'app/slices/popupSlice';
+import { setCurrentList } from 'app/slices/listSlice';
 
 const BtnAdd = styled.button`
     position: absolute;
@@ -48,12 +49,17 @@ const BtnAdd = styled.button`
 `;
 
 
-export const ButtonAdd = ({ small }) => {
+export const ButtonAdd = ({ small, index }) => {
     const dispatch = useDispatch();
     const handleOpenPopup = () => {
         small 
             ? dispatch(setPopupTitle('Add new list element')) 
             : dispatch(setPopupTitle('Add new element'));
+        small 
+            ? dispatch(setListItemPopup(true)) 
+            : dispatch(setListItemPopup(false));
+
+        small && dispatch(setCurrentList(index));
         dispatch(setVisibility(true));
     }
 	return (
