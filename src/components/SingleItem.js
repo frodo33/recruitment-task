@@ -5,7 +5,6 @@ import { ButtonRemove } from 'components/ButtonRemove';
 
 const Item = styled.li`
     position: relative;
-    /*width: 50%;*/
     min-width: 50%;
     max-width: 900px;
     background: #fff;

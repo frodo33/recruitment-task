@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components/macro';
 
 import { Border } from 'globalStyles';
@@ -11,7 +11,6 @@ import { singleItems } from 'app/slices/listSlice';
 
 const ListWrapper = styled.li`
     position: relative;
-    /*width: 50%;*/
     min-width: 50%;
     max-width: 900px;
     margin: 3rem 0 3rem 10rem;
@@ -29,7 +28,6 @@ const ListWrapper = styled.li`
         margin: 3rem 0 3rem 3rem;
         width: 85%;
     }
-
     &:before {
         content: '';
         position: absolute;
@@ -67,15 +65,15 @@ const ListContent = styled.ul`
 `;
 
 export const List = ({ index, text }) => {
-    const dispatch = useDispatch();
     const items = useSelector(singleItems);
     return (
         <ListWrapper>
             <Border></Border>
-            <ListHeader listIndex={index} title={text} />
+            <ListHeader itemIndex={index} title={text} />
             <ListContent>
-                <ButtonAdd small index={index} />
-                { !items.single && items[index].sublist.map( (title, ind) => <ListItem key={ind} title={title} listIndex={index} listItemIndex={ind} />) }
+                <ButtonAdd small itemIndex={index} />
+                { !items.single 
+                    && items[index].sublist.map( (title, ind) => <ListItem key={ind} title={title} itemIndex={index} listItemIndex={ind} />) }
             </ListContent>
         </ListWrapper>
     )

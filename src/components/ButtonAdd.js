@@ -49,7 +49,7 @@ const BtnAdd = styled.button`
 `;
 
 
-export const ButtonAdd = ({ small, index }) => {
+export const ButtonAdd = ({ small, itemIndex }) => {
     const dispatch = useDispatch();
     const handleOpenPopup = () => {
         small 
@@ -59,7 +59,7 @@ export const ButtonAdd = ({ small, index }) => {
             ? dispatch(setListItemPopup(true)) 
             : dispatch(setListItemPopup(false));
 
-        small && dispatch(setCurrentList(index));
+        small && dispatch(setCurrentList(itemIndex));
         dispatch(setVisibility(true));
     }
 	return (

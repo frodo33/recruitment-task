@@ -31,14 +31,10 @@ const CloseBtn = styled.button`
 
 export const CloseButton = () => {
     const dispatch = useDispatch();
-
-    const handleClosePopup = (ev) => {
-        ev.preventDefault();
-        dispatch(setVisibility(false));
-    }
     return (
         <CloseBtn
-            onClick={ (ev) => handleClosePopup(ev) }
+            type='button'
+            onClick={ (ev) => dispatch(setVisibility(false)) }
         ></CloseBtn>
     )
 }

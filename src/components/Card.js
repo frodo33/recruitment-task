@@ -14,14 +14,14 @@ const CardWrapper = styled.div`
     min-height: 80vh;
     background: #fff;
     box-shadow: 0px 3px 15px 0px #00000030;
-    margin: 10rem auto 0;
+    margin: 10rem auto 2rem;
     padding: 10rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     @media screen and (max-width: 767px) {
         width: 100%;
-        padding: 2rem 1rem;
+        padding: 2rem 1rem 7rem;
     }
 `;
 

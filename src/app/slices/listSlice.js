@@ -7,6 +7,25 @@ export const listSlice = createSlice({
         currentList: 0,
         items: [],
     },
+    // initialState: {
+    //     title: 'People',
+    //     currentList: 0,
+    //     items: [
+    //         {
+    //             title: 'Age 40+',
+    //             single: true
+    //         },
+    //         {
+    //             title: 'Ethnicity',
+    //             single: false,
+    //             sublist: ['Black', 'Hispanic']
+    //         },
+    //         {
+    //             title: 'Income yearly 45k USD+',
+    //             single: true
+    //         }
+    //     ],
+    // },
     reducers: {
         addItem: (state, action) => {
             state.items = [...state.items, action.payload];

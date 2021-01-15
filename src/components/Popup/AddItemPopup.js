@@ -1,11 +1,22 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components/macro';
-import { setVisibility, popupIsOpen, popupTitle, setListChecked, listIsChecked, isListItemPopup } from 'app/slices/popupSlice';
-import { addItem, addCurrentListItem, currentList } from 'app/slices/listSlice';
+import {
+    setVisibility, 
+    popupIsOpen, 
+    popupTitle, 
+    setListChecked, 
+    listIsChecked, 
+    isListItemPopup 
+} from 'app/slices/popupSlice';
+import {
+    addItem,
+    addCurrentListItem,
+    currentList
+} from 'app/slices/listSlice';
 
-import { CloseButton } from 'components/CloseButton';
-import { Switcher } from 'components/Switcher';
+import { CloseButton } from 'components/Popup/CloseButton';
+import { Switcher } from 'components/Popup/Switcher';
 
 const Popup = styled.div`
     position: fixed;
@@ -67,6 +78,7 @@ const PopupButton = styled.button`
     border: none;
     border-radius: 5px;
     outline: none;
+    cursor: pointer;
     @media screen and (max-width: 767px) {
         margin: 2rem 0 0 0;
         padding: 1rem 10rem;
@@ -102,6 +114,7 @@ export const AddItemPopup = () => {
                 if(isListPopup) {
                     item = {
                         title: itemTitle,
+                        single: true,
                         index: curList,
                         sublist: []
                     }

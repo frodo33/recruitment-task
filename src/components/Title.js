@@ -2,7 +2,6 @@ import React from 'react'
 import styled, { css } from 'styled-components/macro';
 
 export const ItemTitle = styled.h1`
-    /*width: 25%;*/
     min-width: 25%;
     align-self: flex-start;
     text-align: center;

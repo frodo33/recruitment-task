@@ -4,60 +4,46 @@ import { ButtonRemove } from 'components/ButtonRemove';
 
 const ListElement = styled.li`
     position: relative;
-    width: 50%;
-    background: #fff;
-    box-shadow: 0px 3px 15px 0px #00000030;
-    margin: 3rem 0 3rem 10rem;
+    width: calc(100% - 4rem);
+    background: transparent;
+    box-shadow: none;
+    margin: 1.5rem 0 1.5rem 4rem;
+    padding: 1.2rem;
+    border: 1px solid #b7bdca;
     border-radius: 5px;
     font-size: 2rem;
     font-weight: 600;
-    padding: 2.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    @media screen and (max-width: 767px) {
+        width: 100%;
+        margin: 1.5rem 0 1.5rem 2rem;
+    }
     &:before {
         content: '';
         position: absolute;
         top: 50%;
         left: 0;
         transform: translate(-100%,-50%);
-        width: 10rem;
+        width: 4rem;
         height: 0.1rem;
         background: #b7bdca;
-    }
-    &:after {
-        content: 'And';
-        position: absolute;
-        top: 50%;
-        left: 0;
-        transform: translate(-450%,-50%);
-        color: #b7bdca;
-        font-size: 1.8rem;
-    }
-    // end of extended styles
-
-    width: calc(100% - 4rem);
-    background: transparent;
-    box-shadow: none;
-    border: 1px solid #b7bdca;
-    margin: 1.5rem 0 1.5rem 4rem;
-    padding: 1.2rem;
-    &:before {
-        width: 4rem;
         @media screen and (max-width: 767px) {
             width: 2rem;
         }
     }
     &:after {
         content: 'Or';
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translate(-450%,-50%);
+        color: #b7bdca;
         font-size: 1.4rem;
         @media screen and (max-width: 767px) {
             transform: translate(-300%,-50%)
         }
-    }
-    @media screen and (max-width: 767px) {
-        width: 100%;
-        margin: 1.5rem 0 1.5rem 2rem;
     }
 `;
 
@@ -66,11 +52,11 @@ const ItemTitle = styled.span`
     overflow: scroll;
 `;
 
-export const ListItem = ({ title, listIndex, listItemIndex }) => {
+export const ListItem = ({ title, itemIndex, listItemIndex }) => {
     return (
         <ListElement>
             <ItemTitle>{title}</ItemTitle>
-            <ButtonRemove itemIndex={listIndex} listItemIndex={listItemIndex} />
+            <ButtonRemove itemIndex={itemIndex} listItemIndex={listItemIndex} />
         </ListElement>
     )
 }
