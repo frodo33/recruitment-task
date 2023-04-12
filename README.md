@@ -1,6 +1,12 @@
-Project maded for recuitment process based on CRA redux template.
+This project was created for a recruitment process and is based on the CRA Redux template.
+It is a simple nested list based on a delivered UX template.
 
+Technology used:
 React, Redux, styled-components
+
+### `yarn install`
+
+Install dependencies
 
 ### `yarn start`
 
